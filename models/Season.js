@@ -33,6 +33,13 @@ module.exports = (sequelize, DataTypes) =>
     timestamps: true,
     createdAt: 'DateTimeAdded',
     updatedAt: false,
+    classMethods: {
+      associate: (models) => {
+        models.Season.hasMany(models.Draft, {
+          foreignKey: 'SeasonId',
+        });
+      },
+    },
   }
 );
 

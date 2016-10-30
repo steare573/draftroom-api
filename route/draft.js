@@ -4,11 +4,11 @@ const models = require('../models');
 
 router.get('/:id', (req, res) => {
   models
-    .League
+    .Draft
     .findById(req.params.id, {
       include: [
-        models.Team,
-        models.Draft,
+        models.Season,
+        models.League,
       ],
     })
     .then((data) => {
@@ -19,6 +19,7 @@ router.get('/:id', (req, res) => {
       }
     })
     .catch((err) => {
+      console.log('my error', err);
       res.status(500).send(err);
     });
 });

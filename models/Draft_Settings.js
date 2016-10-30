@@ -6,25 +6,28 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     DraftId: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
         model: 'Draft',
-        key: 'Id'
-      }
+        key: 'Id',
+      },
     },
     Settings: {
       type: DataTypes.JSON,
-      allowNull: true
+      allowNull: true,
     },
     DateTimeAdded: {
       type: DataTypes.DATE,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'Draft_Settings'
+    tableName: 'Draft_Settings',
+    timestamps: true,
+    createdAt: 'DateTimeAdded',
+    updatedAt: false,
   });
 };

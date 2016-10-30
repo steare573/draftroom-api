@@ -10,29 +10,29 @@ module.exports = function(sequelize, DataTypes) {
     },
     PickNumber: {
       type: DataTypes.INTEGER(10),
-      allowNull: true
+      allowNull: true,
     },
     TeamId: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
         model: 'Team',
-        key: 'Id'
-      }
+        key: 'Id',
+      },
     },
     PlayerId: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
         model: 'Player',
-        key: 'Id'
-      }
+        key: 'Id',
+      },
     },
     DateTimeAdded: {
       type: DataTypes.DATE,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   }, {
-    tableName: 'DraftPick'
+    tableName: 'DraftPick',
   });
 };

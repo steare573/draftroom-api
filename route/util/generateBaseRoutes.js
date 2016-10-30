@@ -11,6 +11,7 @@ module.exports = (modelName, options) => {
   }
 
   router.get('/:id', (req, res) => {
+    console.log('models', models[modelName]);
     models[modelName]
       .findById(
         req.params.id,

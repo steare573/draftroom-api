@@ -26,9 +26,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     Settings: {
       type: DataTypes.JSON,
-      allowNull: true
+      allowNull: true,
     }
   }, {
-    tableName: 'LeagueSettings'
+    tableName: 'LeagueSettings',
+    timestamps: false,
   });
 };

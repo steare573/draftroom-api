@@ -1,4 +1,6 @@
 const express = require('express');
+
+const dir = __dirname;
 const app = express();
 const port = process.env.PORT || 5000;
 const registerRoutes = require('./lib/registerRoutes');

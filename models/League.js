@@ -34,6 +34,8 @@ module.exports = (sequelize, DataTypes) => {
           },
           foreignKey: 'LeagueId',
         });
+
+        League.hasMany(models.Draft, { foreignKey: 'LeagueId' });
       },
     },
   });
