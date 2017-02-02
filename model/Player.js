@@ -1,30 +1,26 @@
-/* jshint indent: 2 */
-
-module.exports = (sequelize, DataTypes) => {
-  const NflTeam = sequelize.define('NflTeam', {
+/**
+ * Model representing an NFL player
+ *
+ * @author Sean Teare <steare573@gmail.com>
+ * @since 2016-02-01
+ */
+export default (sequelize, DataTypes) => {
+  const Player = sequelize.define('Player', {
     Id: {
-      type: DataTypes.INTEGER(5),
+      type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
-    City: {
+    FirstName: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    State: {
-      type: DataTypes.CHAR(2),
-      allowNull: true,
-    },
-    Name: {
+    LastName: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    Country: {
-      type: DataTypes.ENUM('US'),
-      allowNull: true,
-    },
-    DateAdded: {
+    Dob: {
       type: DataTypes.DATE,
       allowNull: true,
     },
@@ -33,22 +29,30 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
   }, {
-    tableName: 'NflTeam',
+    tableName: 'Player',
     timestamps: true,
     createdAt: 'DateTimeAdded',
     updatedAt: false,
     classMethods: {
       associate: (models) => {
-        NflTeam.belongsToMany(models.Player, {
+        Player.belongsToMany(models.NflTeam, {
           through: {
             model: models.Player_NflTeam,
             unique: false,
           },
-          foreignKey: 'NflTeamId',
+          foreignKey: 'PlayerId',
+        });
+
+        Player.belongsToMany(models.Position, {
+          through: {
+            model: models.Player_Position,
+            unique: false,
+          },
+          foreignKey: 'PlayerId',
         });
       },
     },
   });
 
-  return NflTeam;
+  return Player;
 };

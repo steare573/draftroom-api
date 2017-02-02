@@ -1,6 +1,10 @@
-/* jshint indent: 2 */
-
-module.exports = (sequelize, DataTypes) => {
+/**
+ * Model representing players NFL position.
+ *
+ * @author Sean Teare <steare573@gmail.com>
+ * @since 2016-02-01
+ */
+export default (sequelize, DataTypes) => {
   const Position = sequelize.define('Position', {
     Id: {
       type: DataTypes.INTEGER(5),

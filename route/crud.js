@@ -1,12 +1,16 @@
-// Note that these are not likely the primary routes we'll use...i just wanted a quick and
-// dirty way to do simple one to one apis to db tables.
-const models = require('../models');
+/**
+ * Basic crud routes to register for each model to provide simple create/update/fetchById endpoints
+ *
+ * @author Sean Teare <steare573@gmail.com>
+ * @since 2017-02-01
+ */
+import models from '../model';
+import lowerFirst from 'lodash.lowerfirst';
+import generateBaseRoutes from './util/generateBaseRoutes';
 const routeObj = {};
-const lowerFirst = require('lodash.lowerfirst');
-const generateBaseRoutes = require('./util/generateBaseRoutes');
 
 Object.keys(models).forEach(modelName => {
   routeObj[lowerFirst(modelName).replace('_', '')] = generateBaseRoutes(modelName);
 });
 
-module.exports = routeObj;
+export default routeObj;

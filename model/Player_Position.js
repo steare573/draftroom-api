@@ -1,12 +1,16 @@
-/* jshint indent: 2 */
-
-module.exports = (sequelize, DataTypes) =>
-  sequelize.define('Player_NflTeam', {
+/**
+ * Model associating a player to a position.
+ *
+ * @author Sean Teare <steare573@gmail.com>
+ * @since 2016-02-01
+ */
+export default (sequelize, DataTypes) => sequelize.define(
+  'Player_Position',
+  {
     Id: {
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
     },
     PlayerId: {
       type: DataTypes.BIGINT,
@@ -16,11 +20,11 @@ module.exports = (sequelize, DataTypes) =>
         key: 'Id',
       },
     },
-    NflTeamId: {
+    PositionId: {
       type: DataTypes.INTEGER(5),
       allowNull: true,
       references: {
-        model: 'NflTeam',
+        model: 'Position',
         key: 'Id',
       },
     },
@@ -41,10 +45,9 @@ module.exports = (sequelize, DataTypes) =>
       allowNull: true,
     },
   }, {
-    tableName: 'Player_NflTeam',
+    tableName: 'Player_Position',
     timestamps: true,
     createdAt: 'DateTimeAdded',
     updatedAt: false,
   }
 );
-

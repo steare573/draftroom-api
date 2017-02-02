@@ -1,6 +1,12 @@
-const express = require('express');
+/**
+ * Route overrides for fetching team with dependencies populated
+ *
+ * @author Sean Teare <steare573@gmail.com>
+ * @since 2017-02-01
+ */
+import express from 'express';
+import models from '../model';
 const router = new express.Router();
-const models = require('../models');
 
 router.get('/:id', (req, res) => {
   models
@@ -24,4 +30,4 @@ router.get('/:id', (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;

@@ -1,6 +1,10 @@
-/* jshint indent: 2 */
-
-module.exports = (sequelize, DataTypes) => {
+/**
+ * Model representing a users fantasy football team
+ *
+ * @author Sean Teare <steare573@gmail.com>
+ * @since 2016-02-01
+ */
+export default (sequelize, DataTypes) => {
   const Team = sequelize.define('Team', {
     Id: {
       type: DataTypes.BIGINT,

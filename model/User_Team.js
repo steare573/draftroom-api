@@ -1,18 +1,23 @@
-/* jshint indent: 2 */
-
-module.exports = (sequelize, DataTypes) =>
-  sequelize.define('League_Team', {
+/**
+ * Model association a user to a user team (many to many)
+ *
+ * @author Sean Teare <steare573@gmail.com>
+ * @since 2016-02-01
+ */
+export default (sequelize, DataTypes) => sequelize.define(
+  'User_Team',
+  {
     Id: {
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
-    LeagueId: {
+    UserId: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
-        model: 'League',
+        model: 'User',
         key: 'Id',
       },
     },
@@ -24,14 +29,6 @@ module.exports = (sequelize, DataTypes) =>
         key: 'Id',
       },
     },
-    StartDate: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-    EndDate: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
     DateAdded: {
       type: DataTypes.DATE,
       allowNull: true,
@@ -41,7 +38,7 @@ module.exports = (sequelize, DataTypes) =>
       allowNull: true,
     },
   }, {
-    tableName: 'League_Team',
+    tableName: 'User_Team',
     timestamps: true,
     createdAt: 'DateTimeAdded',
     updatedAt: false,

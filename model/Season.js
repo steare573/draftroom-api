@@ -1,7 +1,12 @@
-/* jshint indent: 2 */
-
-module.exports = (sequelize, DataTypes) =>
-  sequelize.define('Season', {
+/**
+ * Model representing an instance of an NFL season
+ *
+ * @author Sean Teare <steare573@gmail.com>
+ * @since 2016-02-01
+ */
+export default (sequelize, DataTypes) => sequelize.define(
+  'Season',
+  {
     Id: {
       type: DataTypes.INTEGER(5),
       allowNull: false,

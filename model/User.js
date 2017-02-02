@@ -1,4 +1,10 @@
-module.exports = (sequelize, DataTypes) => {
+/**
+ * Model representing a user.
+ *
+ * @author Sean Teare <steare573@gmail.com>
+ * @since 2016-02-01
+ */
+export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     Id: {
       type: DataTypes.BIGINT,

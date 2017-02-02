@@ -1,17 +1,23 @@
-const express = require('express');
+/**
+ * Route overrides for fetching player with position and team populated
+ *
+ * @author Sean Teare <steare573@gmail.com>
+ * @since 2017-02-01
+ */
+import express from 'express';
+import model from '../model';
 const router = new express.Router();
-const models = require('../models');
 
 router.get('/:id', (req, res) => {
-  models
+  model
     .Player
     .findById(req.params.id, {
       include: [
         {
-          model: models.Position,
+          model: model.Position,
         },
         {
-          model: models.NflTeam,
+          model: model.NflTeam,
         },
       ],
     })
@@ -27,4 +33,4 @@ router.get('/:id', (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;

@@ -1,8 +1,8 @@
-const user = require('./user');
-const league = require('./league');
-const player = require('./player');
+import user from './user';
+import league from './league';
+import player from './player';
 
-module.exports = {
+export default {
   user,
   league,
   player,

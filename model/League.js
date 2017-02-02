@@ -1,5 +1,9 @@
-/* jshint indent: 2 */
-
+/**
+ * Model representing a users league
+ *
+ * @author Sean Teare <steare573@gmail.com>
+ * @since 2016-02-01
+ */
 module.exports = (sequelize, DataTypes) => {
   const League = sequelize.define('League', {
     Id: {

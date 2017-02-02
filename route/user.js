@@ -1,14 +1,20 @@
-const express = require('express');
+/**
+ * Route overrides for fetching user with their teams populated
+ *
+ * @author Sean Teare <steare573@gmail.com>
+ * @since 2017-02-01
+ */
+import express from 'express';
+import model from '../model';
 const router = new express.Router();
-const models = require('../models');
 
 router.get('/:id', (req, res) => {
-  models
+  model
     .User
     .findById(req.params.id, {
       include: [
         {
-          model: models.Team,
+          model: model.Team,
         },
       ],
     })
@@ -24,4 +30,4 @@ router.get('/:id', (req, res) => {
     });
 });
 
-module.exports = router;
+export default router;

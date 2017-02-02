@@ -1,17 +1,23 @@
-const express = require('express');
-const models = require('../../models');
+/**
+ * Utility function for generating basic crud routes for a sequelice model.
+ *
+ * @author Sean Teare <steare573@gmail.com>
+ * @since 2017-02-01
+ */
+import express from 'express';
+import model from '../../model';
 
-module.exports = (modelName, options) => {
+export default (modelName, options) => {
   const opts = options || {};
 
   const router = new express.Router();
 
-  if (!models[modelName]) {
+  if (!model[modelName]) {
     throw new Error('Invalid model name');
   }
 
   router.get('/:id', (req, res) => {
-    models[modelName]
+    model[modelName]
       .findById(
         req.params.id,
         opts.get
@@ -28,21 +34,21 @@ module.exports = (modelName, options) => {
   });
 
   router.post('/', (req, res) => {
-    models[modelName]
+    model[modelName]
       .create(req.body, opts.post)
       .then(data => res.send(data))
       .catch((err) => res.status(500).send(err));
   });
 
   router.delete('/:id', (req, res) => {
-    models[modelName]
+    model[modelName]
       .delete(req.params.id, opts.delete)
       .then(() => res.send())
       .catch(() => res.status(500).send());
   });
 
   router.put('/:id', (req, res) => {
-    models[modelName]
+    model[modelName]
       .upsert(Object.assign(req.params, req.body), opts.put)
       .then(data => res.send(data))
       .catch(() => res.status(500).send());
