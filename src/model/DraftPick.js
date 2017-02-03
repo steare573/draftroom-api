@@ -39,10 +39,5 @@ export default (sequelize, DataTypes) => sequelize.define(
     },
   }, {
     tableName: 'DraftPick',
-<<<<<<< HEAD:models/DraftPick.js
-  });
-};
-=======
-  }
+  },
 );
->>>>>>> redis-store:src/model/DraftPick.js

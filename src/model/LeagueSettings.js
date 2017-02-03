@@ -32,18 +32,9 @@ export default (sequelize, DataTypes) => sequelize.define(
     Settings: {
       type: DataTypes.JSON,
       allowNull: true,
-<<<<<<< HEAD:models/LeagueSettings.js
-    }
-  }, {
-    tableName: 'LeagueSettings',
-    timestamps: false,
-  });
-};
-=======
     },
   }, {
     tableName: 'LeagueSettings',
-  }
+  },
 );
 
->>>>>>> redis-store:src/model/LeagueSettings.js
