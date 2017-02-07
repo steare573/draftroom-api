@@ -6,6 +6,7 @@
  */
 import express from 'express';
 import model from '../model';
+
 const router = new express.Router();
 
 router.get('/:id', (req, res) => {

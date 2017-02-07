@@ -7,8 +7,7 @@
 import express from 'express';
 import model from '../../model';
 
-export default (modelName, options) => {
-  const opts = options || {};
+export default (modelName, options = {}) => {
 
   const router = new express.Router();
 
@@ -18,7 +17,10 @@ export default (modelName, options) => {
 
   router.get('/:id', async (req, res) => {
     try {
-      const data = await model[modelName].findById(req.params.id, opts.get);
+      const opts = req.query.populate ?
+        { ...options.get, include: [{ all: true }] } :
+        options.get;
+      const data = await model[modelName].findById(req.params.id, opts);
       return !data ? res.status(404).send() : res.send(data);
     } catch (err) {
       return res.status(500).send({ error: err.message });
@@ -27,7 +29,7 @@ export default (modelName, options) => {
 
   router.post('/', async (req, res) => {
     try {
-      const data = await model[modelName].create(req.body, opts.post)
+      const data = await model[modelName].create(req.body, options.post);
       return res.send(data);
     } catch (err) {
       return res.status(500).send({ error: err.message });
@@ -36,7 +38,7 @@ export default (modelName, options) => {
 
   router.delete('/:id', async (req, res) => {
     try {
-      await model[modelName].delete(req.params.id, opts.delete);
+      await model[modelName].delete(req.params.id, options.delete);
       return res.send();
     } catch (err) {
       return res.status(500).send({ error: err.message });
@@ -45,7 +47,7 @@ export default (modelName, options) => {
 
   router.put('/:id', async (req, res) => {
     try {
-      const data = model[modelName].upsert({ ...req.params, ...req.body}, opts.put);
+      const data = model[modelName].upsert({ ...req.params, ...req.body }, options.put);
       return res.send(data);
     } catch (err) {
       return res.status(500).send({ error: err.message });

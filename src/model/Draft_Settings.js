@@ -31,5 +31,5 @@ export default (sequelize, DataTypes) => sequelize.define(
     },
   }, {
     tableName: 'Draft_Settings',
-  }
+  },
 );

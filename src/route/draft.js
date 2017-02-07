@@ -11,11 +11,14 @@ const router = new express.Router();
 
 router.get('/:id', (req, res) => {
   models
-    .League
+    .Draft
     .findById(req.params.id, {
       include: [
-        models.Team,
-        models.Draft,
+        models.Season,
+        {
+          model: models.League,
+          include: [models.Team],
+        },
       ],
     })
     .then((data) => {
@@ -26,7 +29,8 @@ router.get('/:id', (req, res) => {
       }
     })
     .catch((err) => {
-      res.status(500).send(err);
+      console.log('my err', err.message);
+      res.status(500).send(err.message);
     });
 });
 

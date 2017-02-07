@@ -50,6 +50,6 @@ export default (sequelize, DataTypes) => sequelize.define(
     timestamps: true,
     createdAt: 'DateTimeAdded',
     updatedAt: false,
-  }
+  },
 );
 
